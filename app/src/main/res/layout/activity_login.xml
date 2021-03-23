@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+    <EditText
+        android:id="@+id/login_mobile_et"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_margin="20dp"
+        android:hint="Mobile Number"
+        android:textColorHint="@color/white"
+        android:textSize="20sp"
+        android:background="@color/black"
+        android:inputType="phone"
+        />
+    <EditText
+        android:id="@+id/login_password_et"
+        android:layout_below="@+id/login_mobile_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:hint="Password"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:background="@color/black"
+        android:inputType="textPassword"
+        />
+    <Button
+        android:id="@+id/login_Btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_password_et"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="#1B5E20"
+        android:text="SUBMIT"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/SignUp_Now_tv"
+        android:layout_below="@+id/login_Btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Register Now"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+
+        />
+
+
+</RelativeLayout>

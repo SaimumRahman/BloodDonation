@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/purple_700">
+
+
+        <EditText
+            android:id="@+id/preferred_location_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:hint="Preferred Location"
+            android:textColorHint="@color/white"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:background="@color/black"
+            android:inputType="text"
+            />
+        <EditText
+            android:id="@+id/relationship_with_blood_recipient_et"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/preferred_location_et"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:hint="relationship with blood recipient"
+            android:textColorHint="@color/white"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:background="@color/black"
+            android:inputType="text"
+            />
+        <EditText
+            android:id="@+id/alt_contact_number_request_et"
+            android:textColor="@color/white"
+            android:layout_below="@+id/relationship_with_blood_recipient_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:hint="Alternate Contact Number"
+            android:textColorHint="@color/white"
+            android:textSize="20sp"
+            android:background="@color/black"
+            android:inputType="phone"
+            />
+        <TextView
+            android:id="@+id/requested_time_frame_from_tv"
+            android:layout_below="@+id/alt_contact_number_request_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Time Frame For Blood From"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:background="@color/black"
+            />
+        <TextView
+            android:id="@+id/requested_time_frame_to_tv"
+            android:layout_below="@+id/requested_time_frame_from_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Time Frame For Blood To"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:background="@color/black"
+            />
+        <Spinner
+            android:id="@+id/Requested_blood_group__spinner"
+            android:layout_below="@+id/requested_time_frame_to_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:entries="@array/Spinner_Items_Blood_Group"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:background="@color/black"
+            android:inputType="text"
+            android:theme="@style/spinnerTheme"
+            />
+        <Button
+            android:id="@+id/Submit_request_Btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Requested_blood_group__spinner"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="38dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="40dp"
+            android:backgroundTint="#1B5E20"
+            android:text="SUBMIT Request"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </RelativeLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/titletv"
+        android:layout_below="@+id/alt_contact_number_request_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Please Assign Time"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:background="@color/teal_700"
+        android:textAlignment="center"
+        />
+    <TextView
+        android:id="@+id/assignedTimeTv"
+        android:layout_below="@+id/titletv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Time Frame For Blood From"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:background="@color/black"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/assignedTimeTv"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <Button
+            android:id="@+id/yesAssignedbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/assignedTimeTv"
+            android:layout_margin="30dp"
+            android:text="YES"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:id="@+id/noassignedbtn"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/yesAssignedbtn"
+            android:layout_margin="30dp"
+            android:text="NO"
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>
