@@ -16,7 +16,7 @@ import java.util.List;
 
 public class RecyclerViewAdapterRequest extends RecyclerView.Adapter<RecyclerViewAdapterRequest.ViewHolder> {
 
-    public Context context;
+        public Context context;
     private final List<Request> items;
     private RecylersingleviewBinding recylersingleviewBinding;
     private String donner_id;

@@ -217,7 +217,7 @@ public class DonnerActivity extends AppCompatActivity {
 
         Calendar callForDate = Calendar.getInstance();
 
-        SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
+        SimpleDateFormat currentDate = new SimpleDateFormat("dd-MMM-yyyy");
         saveCurrentDateMs = currentDate.format(callForDate.getTime());
 
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
@@ -302,7 +302,7 @@ public class DonnerActivity extends AppCompatActivity {
     private void dateListennerfrom() {
         dateSetListenerfrom = (view, year, month, dayOfMonth) -> {
             month += 1;
-            datefrom = month + "/" + dayOfMonth + "/" + year;
+            datefrom = year + "-" + month + "-" + dayOfMonth;
 
             addrequestviewBinding.requestedTimeFrameFromTv.setText(datefrom);
         };
