@@ -90,7 +90,7 @@ public class DetailsActivity extends AppCompatActivity {
 
                                 final DatabaseReference dbr = FirebaseDatabase.getInstance().getReference("Users");
 
-                                dbr.child(request.getDonner_id()).addValueEventListener(new ValueEventListener() {
+                                dbr.child(request.getMain_recipient_id()).addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         User user1 = snapshot.getValue(User.class);
@@ -137,7 +137,7 @@ public class DetailsActivity extends AppCompatActivity {
 
                                 final DatabaseReference dbr = FirebaseDatabase.getInstance().getReference("Users");
 
-                                dbr.child(request.getMain_recipient_id()).addValueEventListener(new ValueEventListener() {
+                                dbr.child(request.getDonner_id()).addValueEventListener(new ValueEventListener() {
                                     @RequiresApi(api = Build.VERSION_CODES.N)
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -202,6 +202,7 @@ public class DetailsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 HashMap<String, Object> hashMap = new HashMap<>();
                 hashMap.put("status", "assigned");
+                hashMap.put("donner_id", donner_id);
 
                 databaseReference.child(request_id).updateChildren(hashMap).addOnCompleteListener(v -> {
                     Toast.makeText(getApplicationContext(), "Processed to ADMIN", Toast.LENGTH_LONG).show();
@@ -261,7 +262,7 @@ public class DetailsActivity extends AppCompatActivity {
         });
     }
 
-    private void historyList(String donnerId, String main_recipientid){
+    private void historyList(String donnerIds, String main_recipientid){
         final int donationHistoryid;
         donationHistoryid=count.incrementAndGet();
 
@@ -269,16 +270,18 @@ public class DetailsActivity extends AppCompatActivity {
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                HashMap<String,Object> hashMap=new HashMap<>();
-                hashMap.put("job_id",String.valueOf(donationHistoryid));
-                hashMap.put("request_id",request_id);
-                hashMap.put("donation_date",date);
-                hashMap.put("reciepient_id",donner_id);
-                hashMap.put("donner_id",main_recipientid);
+
+                    HashMap<String, Object> hashMap = new HashMap<>();
+                hashMap.put("donation_id", String.valueOf(donationHistoryid));
+                hashMap.put("request_id", request_id);
+                hashMap.put("donation_date", date);
+                hashMap.put("reciepient_id", main_recipientid);
+                hashMap.put("donner_id", donnerIds);
 
                 db.child(String.valueOf(donationHistoryid)).updateChildren(hashMap).addOnCompleteListener(task -> {
-                    Toast.makeText(DetailsActivity.this,"History Added",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailsActivity.this, "History Added", Toast.LENGTH_SHORT).show();
                 });
+
             }
 
             @Override
@@ -296,7 +299,9 @@ public class DetailsActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (!snapshot.exists()){confirmDonatoin();}
         for (DataSnapshot snapshot1:snapshot.getChildren()){
+
 
             Donation_History donation_history=snapshot1.getValue(Donation_History.class);
 
@@ -320,7 +325,7 @@ public class DetailsActivity extends AppCompatActivity {
 
                Log.v("Days","Final"+ datediff);
 
-               if(datediff>=90){
+                if(datediff>=90){
 
                    confirmDonatoin();
 

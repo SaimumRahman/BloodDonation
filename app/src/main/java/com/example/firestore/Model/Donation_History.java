@@ -2,7 +2,7 @@ package com.example.firestore.Model;
 
 public class Donation_History {
 
-    private String job_id;
+    private String donation_id;
     private String request_id;
     private String donation_date;
     private String reciepient_id;
@@ -11,20 +11,20 @@ public class Donation_History {
     public Donation_History() {
     }
 
-    public Donation_History(final String job_id, final String request_id, final String donation_date, final String reciepient_id, final String donner_id) {
-        this.job_id = job_id;
+    public Donation_History(final String donation_id, final String request_id, final String donation_date, final String reciepient_id, final String donner_id) {
+        this.donation_id = donation_id;
         this.request_id = request_id;
         this.donation_date = donation_date;
         this.reciepient_id = reciepient_id;
         this.donner_id = donner_id;
     }
 
-    public String getJob_id() {
-        return this.job_id;
+    public String getdonation_id() {
+        return this.donation_id;
     }
 
-    public void setJob_id(final String job_id) {
-        this.job_id = job_id;
+    public void setdonation_id(final String job_id) {
+        this.donation_id = job_id;
     }
 
     public String getRequest_id() {

@@ -2,12 +2,16 @@ package com.example.firestore;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.widget.Toast;
 
+import com.example.firestore.Model.Donation_History;
 import com.example.firestore.Model.Request;
 import com.example.firestore.Model.User;
+import com.example.firestore.UI.RecyclerAdapterNotification;
 import com.example.firestore.databinding.ActivityNotificationBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -15,71 +19,55 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NotificationActivity extends AppCompatActivity {
-private String id;
+
 private ActivityNotificationBinding notificationBinding;
+private RecyclerAdapterNotification recyclerAdapterNotification;
+    private DatabaseReference notificationRef;
+    private List<Donation_History> notificationArraylist = new ArrayList<>();
+    private String id;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        notificationBinding=ActivityNotificationBinding.inflate(getLayoutInflater());
+        notificationBinding = ActivityNotificationBinding.inflate(getLayoutInflater());
         setContentView(notificationBinding.getRoot());
 
         id=getIntent().getStringExtra("uniquekey");
 
-        final DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Users");
+        notificationRef=FirebaseDatabase.getInstance().getReference("Donation_History");
+        recyclerAdapterNotification=new RecyclerAdapterNotification(NotificationActivity.this,notificationArraylist);
+        notificationBinding.notificationRecycler.setLayoutManager(new LinearLayoutManager(this));
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        showAllData();
+
+    }
+
+    private void showAllData() {
+
+        notificationRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
 
-                User i=snapshot.child(id).getValue(User.class);
-                if(!i.getUser_type().equals("Admin")){
+                    for (DataSnapshot dataSnapshot:snapshot.getChildren()){
 
-                    final DatabaseReference dbs=FirebaseDatabase.getInstance().getReference("Requests");
-                    dbs.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Donation_History donation_history=dataSnapshot.getValue(Donation_History.class);
 
-                            for (DataSnapshot snapshot1: snapshot.getChildren()){
+                        if(donation_history.getDonner_id().equals(id)){
 
-                                Request request=snapshot1.getValue(Request.class);
-
-                                if(request.getStatus().equals("approved") && request.getMain_recipient_id().equals(id)){
-
-                                    notificationBinding.assignedDateTv.setText(request.getAssigned_date());
-
-                                    final DatabaseReference rr=FirebaseDatabase.getInstance().getReference("Users");
-                                    rr.child(request.getDonner_id()).addValueEventListener(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                            User userss=snapshot.getValue(User.class);
-
-                                            notificationBinding.nametv.setText(userss.getFirst_name());
-                                            notificationBinding.mobiletv.setText(userss.getContact_number());
-                                            notificationBinding.emailtv.setText(userss.getEmail());
-                                            notificationBinding.presentaddresstv.setText(userss.getPresent_address());
-
-                                        }
-
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
-
-                                        }
-                                    });
-                                }
-                            }
-
+                            notificationArraylist.add(donation_history);
 
                         }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-
+                    }
+                    notificationBinding.notificationRecycler.setAdapter(recyclerAdapterNotification);
+                    recyclerAdapterNotification.notifyDataSetChanged();
                 }
-
             }
 
             @Override

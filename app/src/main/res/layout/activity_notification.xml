@@ -1,81 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".NotificationActivity">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/back">
-        <TextView
-            android:id="@+id/nametv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:textSize="30sp"
-            android:text="Name"
-            android:textColor="#180375"
-            android:textStyle="bold"
-            />
-        <TextView
-            android:id="@+id/mobiletv"
-            android:layout_below="@+id/nametv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:textSize="30sp"
-            android:text="Mobile"
-            android:textColor="#180375"
-            android:textStyle="bold"
-            />
-        <TextView
-            android:id="@+id/emailtv"
-            android:layout_below="@+id/mobiletv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:textSize="30sp"
-            android:text="Email"
-            android:textColor="#180375"
-            android:textStyle="bold"
-            />
-        <TextView
-            android:id="@+id/religiontv"
-            android:layout_below="@+id/emailtv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:textSize="30sp"
-            android:text="Religion"
-            android:textColor="#180375"
-            android:textStyle="bold"
-            />
-        <TextView
-            android:id="@+id/presentaddresstv"
-            android:layout_below="@+id/religiontv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:textSize="30sp"
-            android:text="Address"
-            android:textColor="#180375"
-            android:textStyle="bold"
-            />
-        <TextView
-            android:id="@+id/assignedDateTv"
-            android:layout_below="@+id/presentaddresstv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:textSize="30sp"
-            android:text="Assigned Date"
-            android:textColor="#180375"
-            android:textStyle="bold"
-            />
+<androidx.recyclerview.widget.RecyclerView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/notificationRecycler"
+    />
 
-    </RelativeLayout>
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
